@@ -11,7 +11,7 @@ import Card from "@/components/Card";
 export default function HomeScreen() {
 
     const [search,setSearch]=useState("")
-    const [filter,setFilter]=useState("tous")
+    const [filter,setFilter]=useState("Tous")
     const [expandedParcel, setExpandedParcel] = useState<string | null>(null);
 const [expandedVehicle, setExpandedVehicle] = useState<string | null>(null);
 const filteredParcels = parcels.filter((parcel) => {
