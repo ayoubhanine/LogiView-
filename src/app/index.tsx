@@ -1,4 +1,4 @@
-import { SafeAreaView,ScrollView, StyleSheet,View } from "react-native";
+import { SafeAreaView,ScrollView, StyleSheet,View,Text } from "react-native";
 import Header from "@/components/Header";
 import SectionTitle from "@/components/SectionTitle";
 import Colors from "@/constants/colors";
@@ -71,31 +71,43 @@ const filteredVehicles = vehicles.filter((vehicle) => {
         />
       </View>
       <SectionTitle title="📦 Colis en cours"/>
-      {filteredParcels.map((parcel) => (
-  <Card
-    key={parcel.id}
-    item={parcel}
-    expanded={expandedParcel === parcel.id}
-    onPress={() =>
-      setExpandedParcel(
-        expandedParcel === parcel.id ? null : parcel.id
-      )
-    }
-  />
-))}
+{filteredParcels.length > 0 ? (
+  filteredParcels.map((parcel) => (
+    <Card
+      key={parcel.id}
+      item={parcel}
+      expanded={expandedParcel === parcel.id}
+      onPress={() =>
+        setExpandedParcel(
+          expandedParcel === parcel.id ? null : parcel.id
+        )
+      }
+    />
+  ))
+) : (
+  <Text style={styles.emptyText}>
+    Aucun colis trouvé.
+  </Text>
+)}
       <SectionTitle title="🚚 Véhicules disponibles"/>
-      {filteredVehicles.map((vehicle) => (
-  <Card
-    key={vehicle.id}
-    item={vehicle}
-    expanded={expandedVehicle === vehicle.id}
-    onPress={() =>
-      setExpandedVehicle(
-        expandedVehicle === vehicle.id ? null : vehicle.id
-      )
-    }
-  />
-))}
+{filteredVehicles.length > 0 ? (
+  filteredVehicles.map((vehicle) => (
+    <Card
+      key={vehicle.id}
+      item={vehicle}
+      expanded={expandedVehicle === vehicle.id}
+      onPress={() =>
+        setExpandedVehicle(
+          expandedVehicle === vehicle.id ? null : vehicle.id
+        )
+      }
+    />
+  ))
+) : (
+  <Text style={styles.emptyText}>
+    Aucun véhicule trouvé.
+  </Text>
+)}
       </ScrollView>
      
     </SafeAreaView>
@@ -118,4 +130,10 @@ const styles = StyleSheet.create({
     gap: 10,
     marginBottom: 30,
   },
+  emptyText: {
+  textAlign: "center",
+  color: Colors.textSecondary,
+  fontSize: 15,
+  marginBottom: 20,
+},
 });
