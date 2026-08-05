@@ -22,39 +22,45 @@ export default function Card({
       activeOpacity={0.8}
       onPress={onPress}
     >
-      <View style={styles.header}>
-        <View>
-          <Text style={styles.title}>
-            {isParcel ? item.reference : item.registration}
-          </Text>
+    <View style={styles.header}>
+  <View>
+    <Text style={styles.title}>
+      {isParcel ? item.reference : item.registration}
+    </Text>
 
-          <Text style={styles.subtitle}>
-            {isParcel ? item.destination : item.type}
-          </Text>
-        </View>
+    <Text style={styles.subtitle}>
+      {isParcel ? item.destination : item.type}
+    </Text>
+  </View>
 
-        <View
-          style={[
-            styles.badge,
-            item.status === "Livré" ||
-            item.status === "Disponible"
-              ? styles.successBadge
-              : styles.warningBadge,
-          ]}
-        >
-          <Text
-            style={[
-              styles.badgeText,
-              item.status === "Livré" ||
-              item.status === "Disponible"
-                ? styles.successText
-                : styles.warningText,
-            ]}
-          >
-            {item.status}
-          </Text>
-        </View>
-      </View>
+  <View style={styles.rightContent}>
+    <View
+      style={[
+        styles.badge,
+        item.status === "Livré" ||
+        item.status === "Disponible"
+          ? styles.successBadge
+          : styles.warningBadge,
+      ]}
+    >
+      <Text
+        style={[
+          styles.badgeText,
+          item.status === "Livré" ||
+          item.status === "Disponible"
+            ? styles.successText
+            : styles.warningText,
+        ]}
+      >
+        {item.status}
+      </Text>
+    </View>
+
+    <Text style={styles.arrow}>
+      {expanded ? "🔼" : "🔽"}
+    </Text>
+  </View>
+</View>
 
       {expanded && (
         <View style={styles.details}>
@@ -125,6 +131,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 6,
   },
+  arrow: {
+  marginTop: 8,
+  fontSize: 16,
+  color: Colors.textSecondary,
+  textAlign: "right",
+},
 
   successBadge: {
     backgroundColor: Colors.badgeSuccessBg,
@@ -160,4 +172,8 @@ const styles = StyleSheet.create({
     color: Colors.textSecondary,
     fontSize: 14,
   },
+  rightContent: {
+  alignItems: "center",
+  gap: 8,
+},
 });
